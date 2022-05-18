@@ -1,0 +1,59 @@
+<div>
+  <div>
+    <h2>Sign in your EHR account</h2>
+  </div>
+  <div>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div>
+        <input
+          type="email"
+          formControlName="email"
+          [ngClass]="{ 'is-invalid': submitted && email?.errors }"
+          placeholder="Email"
+        />
+        <div *ngIf="submitted && email?.errors">
+          <div *ngIf="email?.errors?.['required']">Email is required</div>
+          <div *ngIf="email?.errors?.['pattern']">
+            Enter either a valid Email Address
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <input
+            [type]="show ? 'text' : 'password'"
+            formControlName="password"
+            [ngClass]="{ 'is-invalid': submitted && password?.errors }"
+            placeholder="Password"
+          />
+          <div>
+            <span
+              ><i class="fas fa-eye" (click)="passwordify()" *ngIf="!show"></i
+            ></span>
+            <span
+              ><i
+                class="fas fa-eye-slash"
+                (click)="passwordify()"
+                *ngIf="show"
+              ></i
+            ></span>
+          </div>
+        </div>
+        <div *ngIf="submitted && password?.errors">
+          <div *ngIf="password?.errors?.['required']">Password is required</div>
+        </div>
+      </div>
+
+      <div>
+        <a href="#">Forgot your password?</a>
+      </div>
+
+      <div>
+        <button [disabled]="loading" type="submit">
+          <svg *ngIf="loading" class="animate-spin" viewBox="0 0 24 24"></svg>
+          Sign In
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
