@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build  && echo '/* /index.html 200' | cat >dist/_redirects",
+    "build": "ng build  && echo '/* /index.html 200' | cat >dist/angular-test/_redirects",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
