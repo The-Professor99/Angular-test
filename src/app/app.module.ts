@@ -7,6 +7,9 @@ import { AppComponent } from './app.component';
 import { PatientListComponent } from './home/patient-list/patient-list.component';
 import { PatientRegistrationComponent } from './home/patient-registration/patient-registration.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+// import { StoreModule } from '@ngrx/store';
+// import { reducer } from './store/reducers/account.reducer';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    // StoreModule.forRoot({ user: reducer }),
   ],
   providers: [],
   bootstrap: [AppComponent],
