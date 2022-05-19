@@ -6,6 +6,10 @@ import { PatientListComponent } from './patient-list/patient-list.component';
 import { PatientRegistrationComponent } from './patient-registration/patient-registration.component';
 import { MatTableModule } from '@angular/material/table';
 import { SharedModule } from '../shared-components/shared.module';
+import { MatStepperModule } from '@angular/material/stepper';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -13,6 +17,15 @@ import { SharedModule } from '../shared-components/shared.module';
     PatientListComponent,
     PatientRegistrationComponent,
   ],
-  imports: [CommonModule, HomeRoutingModule, MatTableModule, SharedModule],
+  imports: [
+    CommonModule,
+    HomeRoutingModule,
+    ReactiveFormsModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatStepperModule,
+    MatInputModule,
+    SharedModule,
+  ],
 })
 export class HomeModule {}
