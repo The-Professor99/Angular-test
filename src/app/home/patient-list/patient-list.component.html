@@ -1,3 +1,16 @@
+<div class="topbar-container">
+  <mat-form-field appearance="outline">
+    <mat-label>Search for patient name</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Search for patient name"
+      #input
+    />
+  </mat-form-field>
+  <app-topbar></app-topbar>
+</div>
+
 <div class="patient-list-container">
   <h2>Patient List</h2>
   <div class="table-container">
@@ -8,7 +21,7 @@
     <table
       *ngIf="!isLoading"
       mat-table
-      [dataSource]="patients"
+      [dataSource]="dataSource"
       class="patients-table"
     >
       <ng-container matColumnDef="avatar">

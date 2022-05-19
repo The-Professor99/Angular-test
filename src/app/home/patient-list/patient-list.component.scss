@@ -1,6 +1,15 @@
+.topbar-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: blue;
+}
+
 .patient-list-container {
   background-color: gray;
   height: 100%;
+  h2 {
+    margin-top: 0;
+  }
   .table-container {
     height: 80vh;
     overflow: auto;

@@ -8,7 +8,8 @@ import { AccountService } from '../../_service/account.service';
   styleUrls: ['./patient-list.component.scss'],
 })
 export class PatientListComponent implements OnInit {
-  patients: Patient[] = [];
+  dataSource: Patient[] = [];
+  filterDataSource: Patient[] = [];
   isLoading = true;
   columnsToDisplay = [
     'avatar',
@@ -28,7 +29,9 @@ export class PatientListComponent implements OnInit {
 
   getPatients(): void {
     this.accountService.getPatients().subscribe((patients) => {
-      this.patients = patients;
+      this.dataSource = patients;
+      this.filterDataSource = patients; // use for filtering to avoid permanent overwrite of dataSource
+      // this.dataSource = new MatTableDataSource(patients);
       this.isLoading = false;
     });
   }
@@ -37,5 +40,13 @@ export class PatientListComponent implements OnInit {
     // setup data fetch with id
 
     alert(id);
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource = this.filterDataSource.filter((patient) => {
+      let name = patient.name.trim().toLowerCase();
+      return name.startsWith(filterValue.trim().toLowerCase());
+    });
   }
 }
