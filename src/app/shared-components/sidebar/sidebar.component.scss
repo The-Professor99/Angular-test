@@ -1,3 +1,38 @@
-.active {
-  background-color: red;
+nav {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  background-color: blue;
+  color: white;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  text-align: center;
+
+  .link-buttons {
+    border: 0;
+    width: 100%;
+  }
+
+  .pills,
+  .active {
+    border: 3px solid black;
+  }
+
+  .upper-bar {
+    margin-top: 1rem;
+    align-items: center;
+
+    .image-container {
+      margin-bottom: 2rem;
+    }
+
+    .mb-2 {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .lower-bar {
+    margin-bottom: 1.5rem;
+  }
 }
