@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, of, tap } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
 import { Account } from '../_models/account';
+import { Patient } from '../_models/patient';
 
 const baseUrl = `${environment.apiUrl}`;
 const accountsKey = 'user-account-angular-test';
@@ -38,5 +39,21 @@ export class AccountService {
     // localStorage.removeItem(accountsKey);
     // this.accountSubject.next(null);
     this.router.navigate(['/account/login']);
+  }
+
+  getPatients(): Observable<Patient[]> {
+    return this.http.get<Patient[]>(`${baseUrl}/patients`).pipe(
+      tap((_) => console.log('fetched patients')),
+      catchError(this.handleError<Patient[]>('getPatients', []))
+    );
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
   }
 }
