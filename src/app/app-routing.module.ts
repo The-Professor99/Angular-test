@@ -2,14 +2,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from './_helpers/auth.guard';
-import { PatientListComponent } from './home/patient-list/patient-list.component';
+import { HomeModule } from './home/home.module';
 
 const accountModule = () =>
   import('./account/account.module').then((x) => x.AccountModule);
+const homeModule = () => import('./home/home.module').then((x) => x.HomeModule);
 
 const routes: Routes = [
-  { path: '', component: PatientListComponent, canActivate: [AuthGuard] },
+  { path: '', loadChildren: homeModule, canActivate: [AuthGuard] },
   { path: 'account', loadChildren: accountModule },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
