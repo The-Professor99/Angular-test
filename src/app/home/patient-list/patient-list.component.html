@@ -1,19 +1,54 @@
-<p>patient-list works!</p>
-<table mat-table [dataSource]="patients">
-  <ng-container matColumnDef="avatar">
-    <th mat-header-cell *matHeaderCellDef>Avatar</th>
-    <td mat-cell *matCellDef="let patient">
-      <img src="{{ patient.image }}" />
-    </td>
-  </ng-container>
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>Name</th>
-    <td mat-cell *matCellDef="let patient">{{ patient.name }}</td>
-  </ng-container>
-  <ng-container matColumnDef="phone">
-    <th mat-header-cell *matHeaderCellDef>Phone Number</th>
-    <td mat-cell *matCellDef="let patient">{{ patient.phone }}</td>
-  </ng-container>
-  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-  <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
-</table>
+<div class="patient-list-container">
+  <h2>Patient List</h2>
+  <div class="table-container">
+    <div *ngIf="isLoading" class="center">
+      <mat-spinner> </mat-spinner>
+    </div>
+
+    <table
+      *ngIf="!isLoading"
+      mat-table
+      [dataSource]="patients"
+      class="patients-table"
+    >
+      <ng-container matColumnDef="avatar">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let patient" class="patient-image">
+          <img src="{{ patient.image }}" />
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>NAME</th>
+        <td mat-cell *matCellDef="let patient" class="patient-name">
+          {{ patient.name }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="gender">
+        <th mat-header-cell *matHeaderCellDef>GENDER</th>
+        <td mat-cell *matCellDef="let patient">{{ patient.gender }}</td>
+      </ng-container>
+      <ng-container matColumnDef="age">
+        <th mat-header-cell *matHeaderCellDef>AGE</th>
+        <td mat-cell *matCellDef="let patient">{{ patient.age }}</td>
+      </ng-container>
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef>PHONE NUMBER</th>
+        <td mat-cell *matCellDef="let patient">{{ patient.phone }}</td>
+      </ng-container>
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef>ADDRESS</th>
+        <td mat-cell *matCellDef="let patient">{{ patient.address }}</td>
+      </ng-container>
+      <ng-container matColumnDef="viewDetails">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let patient">
+          <button mat-stroked-button (click)="viewDetails(patient.id)">
+            view Details
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+      <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+    </table>
+  </div>
+</div>

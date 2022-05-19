@@ -9,7 +9,16 @@ import { AccountService } from '../../_service/account.service';
 })
 export class PatientListComponent implements OnInit {
   patients: Patient[] = [];
-  columnsToDisplay = ['avatar', 'name', 'phone'];
+  isLoading = true;
+  columnsToDisplay = [
+    'avatar',
+    'name',
+    'gender',
+    'age',
+    'phone',
+    'address',
+    'viewDetails',
+  ];
 
   constructor(private accountService: AccountService) {}
 
@@ -18,8 +27,15 @@ export class PatientListComponent implements OnInit {
   }
 
   getPatients(): void {
-    this.accountService
-      .getPatients()
-      .subscribe((patients) => (this.patients = patients));
+    this.accountService.getPatients().subscribe((patients) => {
+      this.patients = patients;
+      this.isLoading = false;
+    });
+  }
+
+  viewDetails(id: number) {
+    // setup data fetch with id
+
+    alert(id);
   }
 }

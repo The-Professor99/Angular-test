@@ -11,6 +11,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatStepperModule,
     MatInputModule,
     MatSidenavModule,
+    MatProgressSpinnerModule,
     SharedModule,
+    MatButtonModule,
   ],
 })
 export class HomeModule {}

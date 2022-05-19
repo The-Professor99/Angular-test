@@ -1,0 +1,51 @@
+.patient-list-container {
+  background-color: gray;
+  height: 100%;
+  .table-container {
+    height: 80vh;
+    overflow: auto;
+
+    .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    .patients-table {
+      width: 90%;
+      margin: auto;
+
+      .mat-header-cell {
+        padding: 1rem;
+        background-color: red;
+      }
+
+      .mat-row .mat-cell {
+        border-bottom: 1px solid transparent;
+        border-top: 1px solid transparent;
+        padding: 1rem;
+        white-space: nowrap;
+        color: darkblue;
+      }
+
+      .mat-row:hover .mat-cell {
+        border-color: blue;
+        background-color: paleturquoise;
+      }
+    }
+    .mat-column-avatar {
+      &.patient-image img {
+        border-radius: 50%;
+        width: 3rem;
+      }
+    }
+
+    .mat-column-address {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 8rem;
+    }
+  }
+}

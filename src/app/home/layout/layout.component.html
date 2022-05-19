@@ -1,4 +1,7 @@
 <mat-drawer-container class="home-container">
   <mat-drawer mode="side" opened> <app-sidebar></app-sidebar></mat-drawer>
-  <mat-drawer-content> <router-outlet></router-outlet></mat-drawer-content>
+  <mat-drawer-content>
+    <app-topbar></app-topbar>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
 </mat-drawer-container>
