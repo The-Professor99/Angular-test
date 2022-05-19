@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -16,6 +16,7 @@ import { AccountService } from '../../_service/account.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  // encapsulation: ViewEncapsulation.None, // https://stackoverflow.com/questions/53684763/how-to-remove-space-bottom-mat-form-field
 })
 export class LoginComponent implements OnInit {
   loginForm = new FormGroup({
@@ -23,7 +24,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl(''),
   });
   loading = false;
-  show: boolean;
+  hide = true;
   submitted = false;
   title = 'Login';
 
@@ -32,9 +33,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private accountService: AccountService,
     private route: ActivatedRoute // private store: Store<AppState>
-  ) {
-    this.show = false;
-  }
+  ) {}
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -51,8 +50,18 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  passwordify() {
-    this.show = !this.show;
+  getErrorMessage(ctrl: string) {
+    if (ctrl == 'email') {
+      if (this.email?.hasError('required')) {
+        return 'Email is required';
+      } else if (this.email?.hasError('pattern')) {
+        return 'Enter either a valid Email Address';
+      }
+
+      return this.email?.hasError('email') ? 'Not a valid email' : '';
+    } else {
+      return this.password?.hasError('required') ? 'Password is required' : '';
+    }
   }
 
   get email() {

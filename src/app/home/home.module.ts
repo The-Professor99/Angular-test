@@ -10,6 +10,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatStepperModule,
     MatInputModule,
+    MatSidenavModule,
     SharedModule,
   ],
 })

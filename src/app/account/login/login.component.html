@@ -1,59 +1,82 @@
-<div>
-  <div>
-    <h2>Sign in your EHR account</h2>
-  </div>
-  <div>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <div>
-        <input
-          type="email"
-          formControlName="email"
-          [ngClass]="{ 'is-invalid': submitted && email?.errors }"
-          placeholder="Email"
-        />
-        <div *ngIf="submitted && email?.errors">
-          <div *ngIf="email?.errors?.['required']">Email is required</div>
-          <div *ngIf="email?.errors?.['pattern']">
-            Enter either a valid Email Address
-          </div>
-        </div>
-      </div>
-      <div>
+<div class="login-container">
+  <div class="login-container-sub">
+    <div class="text-container">
+      <h2>
+        Sign in your <span>EHR</span><br />
+        account
+      </h2>
+    </div>
+    <div>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div>
-          <input
-            [type]="show ? 'text' : 'password'"
-            formControlName="password"
-            [ngClass]="{ 'is-invalid': submitted && password?.errors }"
-            placeholder="Password"
-          />
+          <div class="login-form-container">
+            <mat-form-field appearance="outline" class="login-input w-100">
+              <mat-label>Email</mat-label>
+              <input
+                matInput
+                placeholder="johndoe@gmail.com"
+                formControlName="email"
+                required
+              />
+              <mat-error *ngIf="email?.invalid">{{
+                getErrorMessage("email")
+              }}</mat-error>
+            </mat-form-field>
+            <mat-form-field
+              appearance="outline"
+              class="password-form-field login-input w-100"
+            >
+              <mat-label>Password</mat-label>
+              <input
+                matInput
+                [type]="hide ? 'password' : 'text'"
+                required
+                formControlName="password"
+              />
+              <button
+                mat-icon-button
+                matSuffix
+                (click)="hide = !hide"
+                [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide"
+                type="button"
+              >
+                <mat-icon>{{
+                  hide ? "visibility_off" : "visibility"
+                }}</mat-icon>
+              </button>
+              <mat-error *ngIf="password?.invalid">{{
+                getErrorMessage("password")
+              }}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="forgot-password">
+            <a href="#">Forgot your password?</a>
+          </div>
+
           <div>
-            <span
-              ><i class="fas fa-eye" (click)="passwordify()" *ngIf="!show"></i
-            ></span>
-            <span
-              ><i
-                class="fas fa-eye-slash"
-                (click)="passwordify()"
-                *ngIf="show"
-              ></i
-            ></span>
+            <button
+              [disabled]="loading"
+              type="submit"
+              class="w-100"
+              mat-raised-button
+              color="primary"
+            >
+              <mat-spinner
+                *ngIf="loading"
+                [diameter]="20"
+                class="my-spinner"
+              ></mat-spinner>
+              Sign In
+            </button>
+            <p>
+              Dont have an account?
+              <a href="#"><strong>Meet up with the IT guy</strong></a>
+            </p>
           </div>
         </div>
-        <div *ngIf="submitted && password?.errors">
-          <div *ngIf="password?.errors?.['required']">Password is required</div>
-        </div>
-      </div>
-
-      <div>
-        <a href="#">Forgot your password?</a>
-      </div>
-
-      <div>
-        <button [disabled]="loading" type="submit">
-          <svg *ngIf="loading" class="animate-spin" viewBox="0 0 24 24"></svg>
-          Sign In
-        </button>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
 </div>

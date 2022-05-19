@@ -1,0 +1,62 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+
+  a {
+    text-decoration: none;
+  }
+
+  .login-container-sub {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 80%;
+    margin: auto;
+
+    .text-container {
+      font-size: 1.3rem;
+    }
+
+    .text-container span {
+      border: solid 5px gold;
+      border-color: transparent transparent gold transparent;
+      // border-radius: 0 0 240px 50%/60px;
+      border-radius: 100%;
+    }
+
+    .w-100 {
+      width: 100%;
+    }
+
+    .password-form-field .mat-form-field-wrapper {
+      padding-bottom: 1rem;
+    }
+
+    .forgot-password {
+      margin-bottom: 1rem;
+      color: red;
+    }
+
+    button[type="button"] {
+      background-color: transparent;
+      border: 0;
+    }
+
+    .my-spinner {
+      display: inline-block;
+      margin-right: 1rem;
+    }
+  }
+
+  @media all and (min-width: 768px) {
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    .login-container-sub {
+      .forgot-password {
+        margin-bottom: 4rem;
+      }
+    }
+  }
+}
