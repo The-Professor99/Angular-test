@@ -9,6 +9,7 @@ import { AccountService } from '../../_service/account.service';
 })
 export class PatientListComponent implements OnInit {
   patients: Patient[] = [];
+  columnsToDisplay = ['avatar', 'name', 'phone'];
 
   constructor(private accountService: AccountService) {}
 

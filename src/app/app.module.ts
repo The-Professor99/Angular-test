@@ -8,6 +8,7 @@ import { PatientListComponent } from './home/patient-list/patient-list.component
 import { PatientRegistrationComponent } from './home/patient-registration/patient-registration.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { MatTableModule } from '@angular/material/table';
 // import { StoreModule } from '@ngrx/store';
 // import { reducer } from './store/reducers/account.reducer';
 
@@ -23,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatTableModule,
     // StoreModule.forRoot({ user: reducer }),
   ],
   providers: [],

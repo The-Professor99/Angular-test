@@ -29,10 +29,24 @@ export class AccountService {
   }
 
   login(email: string, password: string): Observable<Account> {
-    return this.http.post<Account>(`${baseUrl}/users`, {
-      email_address: email,
-      password: password,
-    });
+    return this.http
+      .post<Account>(`${baseUrl}/users`, {
+        email_address: email,
+        password: password,
+      })
+      .pipe(
+        tap((account) => {
+          if (account.email_address) {
+            localStorage.setItem(
+              accountsKey,
+              JSON.stringify(account.email_address)
+            );
+          }
+        }),
+        (error) => {
+          return error;
+        }
+      );
   }
 
   logout() {
@@ -50,7 +64,7 @@ export class AccountService {
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error(error);
+      alert(error.statusText);
 
       // Let the app keep running by returning an empty result.
       return of(result as T);

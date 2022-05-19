@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
   show: boolean;
   submitted = false;
   title = 'Login';
-  accountsKey = 'user-account-angular-test';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -83,10 +82,6 @@ export class LoginComponent implements OnInit {
       ()
       .subscribe({
         next: (account) => {
-          localStorage.setItem(
-            this.accountsKey,
-            JSON.stringify(account.email_address)
-          );
           // get return url from query parameters or default to home page
           const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '';
           this.router.navigateByUrl(returnUrl);
