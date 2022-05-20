@@ -12,17 +12,47 @@ import {
   styleUrls: ['./patient-registration.component.scss'],
 })
 export class PatientRegistrationComponent implements OnInit {
+  titles: string[] = ['Mr.', 'Mrs.', 'Miss'];
+  ethnicGroups: string[] = ['Yoruba', 'Igbo', 'Hausa'];
+  maritalStatuses: string[] = ['Married', 'Widowed'];
+  countries: string[] = ['Nigeria', 'Ghana'];
+  states: string[] = ['Lagos', 'Abuja'];
+  lgas: string[] = ['North', 'South'];
+  relationships: string[] = ['Uncle', 'Sister', 'Father'];
+  policies: string[] = ['Policy One', 'Policy Two', 'Policy Two'];
+
   patientDetails = new FormGroup({
-    firstCtrl: new FormControl(''),
+    picture: new FormControl(''),
+    title: new FormControl(''),
+    surname: new FormControl(''),
+    firstName: new FormControl(''),
+    middleName: new FormControl(''),
+    phoneNumber: new FormControl(''),
+    email: new FormControl(''),
+    gender: new FormControl(''),
+    dob: new FormControl(''),
+    address: new FormControl(''),
   });
   otherDetails = new FormGroup({
-    secondCtrl: new FormControl(''),
+    ethnicity: new FormControl(''),
+    religion: new FormControl(''),
+    maritalStatus: new FormControl(''),
+    occupation: new FormControl(''),
+    bloodGroup: new FormControl(''),
+    patientType: new FormControl(''),
+    nationality: new FormControl(''),
+    state: new FormControl(''),
+    lga: new FormControl(''),
+    residence: new FormControl(''),
   });
   nextOfKinDetails = new FormGroup({
-    secondCtrl: new FormControl(''),
+    fullName: new FormControl(''),
+    relationship: new FormControl(''),
+    patientPhoneNumber: new FormControl(''),
+    patientAddress: new FormControl(''),
   });
   hmoDetails = new FormGroup({
-    secondCtrl: new FormControl(''),
+    spanar: new FormControl(''),
   });
   isOptional = false;
 
@@ -30,16 +60,41 @@ export class PatientRegistrationComponent implements OnInit {
 
   ngOnInit() {
     this.patientDetails = this.formBuilder.group({
-      firstCtrl: ['', Validators.required],
+      picture: [''],
+      title: ['', Validators.required],
+      surname: ['', Validators.required],
+      firstName: ['', Validators.required],
+      middleName: ['', Validators.required],
+      phoneNumber: ['', Validators.required],
+      email: ['', Validators.required],
+      gender: ['', Validators.required],
+      dob: ['', Validators.required],
+      address: ['', Validators.required],
     });
     this.otherDetails = this.formBuilder.group({
-      secondCtrl: '',
+      ethnicity: ['', Validators.required],
+      religion: ['', Validators.required],
+      maritalStatus: ['', Validators.required],
+      occupation: ['', Validators.required],
+      bloodGroup: ['', Validators.required],
+      patientType: ['', Validators.required],
+      nationality: ['', Validators.required],
+      state: ['', Validators.required],
+      lga: ['', Validators.required],
+      residence: ['', Validators.required],
     });
     this.nextOfKinDetails = this.formBuilder.group({
-      secondCtrl: '',
+      fullName: ['', Validators.required],
+      relationship: ['', Validators.required],
+      patientPhoneNumber: ['', Validators.required],
+      patientAddress: ['', Validators.required],
     });
     this.hmoDetails = this.formBuilder.group({
-      secondCtrl: '',
+      spanar: ['', Validators.required],
     });
+  }
+
+  registerPatient() {
+    alert('Registration Successful');
   }
 }

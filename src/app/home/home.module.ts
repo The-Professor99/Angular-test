@@ -13,12 +13,16 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { DialogBoxComponent } from './dialog-box.component';
 
 @NgModule({
   declarations: [
     LayoutComponent,
     PatientListComponent,
     PatientRegistrationComponent,
+    DialogBoxComponent,
   ],
   imports: [
     CommonModule,
@@ -32,6 +36,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatProgressSpinnerModule,
     SharedModule,
     MatButtonModule,
+    MatIconModule,
+    MatSelectModule,
   ],
 })
 export class HomeModule {}
