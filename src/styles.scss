@@ -24,6 +24,10 @@ body {
   margin: 0;
   font-family: Silka, "Helvetica Neue", sans-serif !important;
 }
+img {
+  max-width: 100%;
+  height: auto;
+}
 
 .page-loader {
   position: fixed;
@@ -57,4 +61,12 @@ body {
   100% {
     transform: rotate(360deg);
   }
+}
+
+:root {
+  --main-color: #102352;
+  --faint-color: #797979;
+  --primary-color: #062074;
+  --accent-color: rgba(255, 255, 255, 0.1);
+  --bg-color: #f6f6f6;
 }

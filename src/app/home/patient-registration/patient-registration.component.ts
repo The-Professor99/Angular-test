@@ -5,6 +5,10 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { DialogBoxComponent } from '../dialog-box.component';
+import { MatDialog } from '@angular/material/dialog';
+import { AccountService } from '../../_service/account.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-patient-registration',
@@ -20,14 +24,16 @@ export class PatientRegistrationComponent implements OnInit {
   lgas: string[] = ['North', 'South'];
   relationships: string[] = ['Uncle', 'Sister', 'Father'];
   policies: string[] = ['Policy One', 'Policy Two', 'Policy Two'];
+  genders: string[] = ['Male', 'Female'];
+  title = 'Patient Registration';
 
   patientDetails = new FormGroup({
-    picture: new FormControl(''),
+    image: new FormControl(''),
     title: new FormControl(''),
     surname: new FormControl(''),
     firstName: new FormControl(''),
     middleName: new FormControl(''),
-    phoneNumber: new FormControl(''),
+    phone: new FormControl(''),
     email: new FormControl(''),
     gender: new FormControl(''),
     dob: new FormControl(''),
@@ -46,7 +52,7 @@ export class PatientRegistrationComponent implements OnInit {
     residence: new FormControl(''),
   });
   nextOfKinDetails = new FormGroup({
-    fullName: new FormControl(''),
+    name: new FormControl(''),
     relationship: new FormControl(''),
     patientPhoneNumber: new FormControl(''),
     patientAddress: new FormControl(''),
@@ -55,17 +61,24 @@ export class PatientRegistrationComponent implements OnInit {
     spanar: new FormControl(''),
   });
   isOptional = false;
+  verticalOrientation = true;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private titleService: Title,
+    private accountService: AccountService,
+    private formBuilder: FormBuilder,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit() {
+    this.titleService.setTitle(this.title);
     this.patientDetails = this.formBuilder.group({
-      picture: [''],
+      image: [''],
       title: ['', Validators.required],
       surname: ['', Validators.required],
       firstName: ['', Validators.required],
       middleName: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
+      phone: ['', Validators.required],
       email: ['', Validators.required],
       gender: ['', Validators.required],
       dob: ['', Validators.required],
@@ -84,7 +97,7 @@ export class PatientRegistrationComponent implements OnInit {
       residence: ['', Validators.required],
     });
     this.nextOfKinDetails = this.formBuilder.group({
-      fullName: ['', Validators.required],
+      name: ['', Validators.required],
       relationship: ['', Validators.required],
       patientPhoneNumber: ['', Validators.required],
       patientAddress: ['', Validators.required],
@@ -92,9 +105,57 @@ export class PatientRegistrationComponent implements OnInit {
     this.hmoDetails = this.formBuilder.group({
       spanar: ['', Validators.required],
     });
+
+    // Set orientation
+    this.verticalOrientation = screen.width < 768 ? true : false;
+  }
+
+  get getDetails() {
+    return this.patientDetails;
+  }
+
+  get getotherDetails() {
+    return this.otherDetails;
+  }
+
+  get getNextofKinDetails() {
+    return this.nextOfKinDetails;
+  }
+
+  get getHMODetails() {
+    return this.hmoDetails;
   }
 
   registerPatient() {
-    alert('Registration Successful');
+    if (
+      this.getDetails.invalid ||
+      this.getotherDetails.invalid ||
+      this.getNextofKinDetails.invalid ||
+      this.getHMODetails.invalid
+    ) {
+      return;
+    }
+    let all_data = Object.assign(
+      {},
+      this.getDetails.value,
+      this.getotherDetails.value,
+      this.getNextofKinDetails.value,
+      this.getHMODetails.value
+    );
+
+    // Send Post Request
+    this.dialog.open(DialogBoxComponent);
+    this.accountService
+      .registerPatientDetails(all_data)
+      .pipe()
+      .subscribe({
+        next: () => {
+          this.dialog.open(DialogBoxComponent);
+        },
+        error: (error) => {
+          alert(error.statusText);
+          // this.loading = false;
+        },
+      });
   }
 }

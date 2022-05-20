@@ -17,15 +17,14 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class AccountService {
-  // private accountSubject: BehaviorSubject<Account>;
-  // public account: Observable<Account>;
+  private accountSubject: BehaviorSubject<Account>;
+  public account: Observable<any>;
 
   constructor(private router: Router, private http: HttpClient) {
-    // return to clear the localStorage here
-    //   this.accountSubject = new BehaviorSubject<Account>(
-    //     JSON.parse(localStorage.getItem(accountsKey)) || null
-    //   );
-    //   this.account = this.accountSubject.asObservable();
+    this.accountSubject = new BehaviorSubject<Account>(
+      JSON.parse(localStorage.getItem(accountsKey) || '{}')
+    );
+    this.account = this.accountSubject.asObservable();
   }
 
   login(email: string, password: string): Observable<Account> {
@@ -37,10 +36,9 @@ export class AccountService {
       .pipe(
         tap((account) => {
           if (account.email_address) {
-            localStorage.setItem(
-              accountsKey,
-              JSON.stringify(account.email_address)
-            );
+            localStorage.setItem(accountsKey, JSON.stringify(account));
+
+            this.accountSubject.next(account);
           }
         }),
         (error) => {
@@ -49,9 +47,21 @@ export class AccountService {
       );
   }
 
+  registerPatientDetails(form: Account) {
+    return this.http.post<Account>(`${baseUrl}/patients`, form).pipe(
+      tap((_) => console.log('Patients Data Registered')),
+      (error) => {
+        return error;
+      }
+    );
+  }
+
   logout() {
-    // localStorage.removeItem(accountsKey);
-    // this.accountSubject.next(null);
+    localStorage.removeItem(accountsKey);
+    this.accountSubject.next({
+      email_address: '',
+      password: '',
+    });
     this.router.navigate(['/account/login']);
   }
 

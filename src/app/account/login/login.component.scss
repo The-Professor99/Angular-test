@@ -16,6 +16,9 @@
     .text-container {
       font-size: 1.3rem;
     }
+    .text-container h2 {
+      color: var(--main-color);
+    }
 
     .text-container span {
       border: solid 5px gold;
@@ -34,12 +37,20 @@
 
     .forgot-password {
       margin-bottom: 1rem;
+    }
+    .forgot-password a {
       color: red;
     }
 
     button[type="button"] {
       background-color: transparent;
       border: 0;
+    }
+    p.call-to-action {
+      color: var(--faint-color);
+    }
+    p.call-to-action strong {
+      color: var(--main-color);
     }
 
     .my-spinner {

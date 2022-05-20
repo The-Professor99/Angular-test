@@ -1,6 +1,35 @@
-.patient-registration-topbar {
+.stepper-container {
   display: flex;
-  justify-content: space-between;
-  background-color: blue;
-  padding: 1rem 2rem 0.5rem 2rem;
+  flex-direction: column;
+  height: 100%;
+  .patient-registration-topbar {
+    height: 20%;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem 0.5rem 2rem;
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+    h2 {
+      margin: 0;
+      align-self: center;
+      color: var(--main-color);
+    }
+  }
+
+  .patient-registration-container {
+    background-color: var(--bg-color);
+    padding: 1.5rem;
+    height: 85%;
+    overflow: auto;
+    :first-child {
+      height: 100%;
+      background-color: inherit;
+    }
+  }
+  @media all and (min-width: 768px) {
+    .patient-registration-topbar {
+      flex-direction: row;
+    }
+  }
 }

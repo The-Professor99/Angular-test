@@ -4,13 +4,105 @@
   width: 100%;
   height: 100%;
   .left-container {
-    background-color: lightblue;
+    // background-color: red;
+    background-image: url("/assets/img/serious-asian-young-female-doctor-using-tablet-computer_1.jpg");
+
+    background-size: cover;
+    .left-container-sub {
+      height: 100%;
+      display: flex;
+      margin-top: 3rem;
+      background-color: rgba(255, 255, 255, 0.95);
+
+      @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+        .left-container-sub {
+          -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(20px);
+          // background-color: rgba(255, 255, 255, 0.5);
+        }
+        .warning {
+          display: none;
+        }
+      }
+    }
+    .left-container-sub-sub {
+      width: 80%;
+      margin: auto;
+    }
+    .image-container {
+      border: 1.5rem solid;
+      border-color: white;
+      border-radius: 50%;
+      width: 15rem;
+      height: 15rem;
+      margin: auto;
+      box-shadow: 0 0 0 20px #222;
+
+      -webkit-animation-name: change-border-color; /* Safari 4.0 - 8.0 */
+      -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+      -webkit-animation-iteration-count: infinite;
+      animation-name: change-border-color;
+      animation-duration: 4s;
+      animation-iteration-count: infinite;
+    }
+
+    /* Safari 4.0 - 8.0 */
+    @-webkit-keyframes change-border-color {
+      0% {
+        border-color: red;
+      }
+      25% {
+        border-color: yellow;
+      }
+      50% {
+        border-color: blue;
+      }
+      100% {
+        border-color: green;
+      }
+    }
+
+    /* Standard syntax */
+    @keyframes change-border-color {
+      0% {
+        border-color: red;
+      }
+      25% {
+        border-color: yellow;
+      }
+      50% {
+        border-color: blue;
+      }
+      100% {
+        border-color: green;
+      }
+    }
+    .image-container img {
+      height: 12rem;
+      width: 12rem;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .text-container {
+      text-align: center;
+      width: 80%;
+      margin: auto;
+      margin-top: 4rem;
+    }
+    .text-container h3 {
+      color: var(--main-color);
+    }
+    .text-container p {
+      color: var(--faint-color);
+    }
   }
   @media all and (min-width: 768px) {
     flex-direction: row;
     .left-container {
       width: 45%;
-      background-color: lightblue;
+      .left-container-sub {
+        margin-top: 0;
+      }
     }
     .right-container {
       width: 55%;

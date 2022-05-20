@@ -1,15 +1,27 @@
-.patient-list-topbar {
+.patient-list-topbar > div {
   display: flex;
   justify-content: space-between;
-  background-color: blue;
-  padding: 1rem 2rem 0.5rem 2rem;
+  flex-direction: column-reverse;
+  padding: 0.5rem 2rem 0.5rem 2rem;
+  align-items: center;
+  ::ng-deep .mat-form-field-wrapper {
+    margin-bottom: -1.25em;
+  }
+  .icon-container {
+    color: var(--primary-color);
+  }
+
+  @media all and (min-width: 768px) {
+    flex-direction: row;
+  }
 }
 
 .patient-list-container {
-  background-color: gray;
+  background-color: var(--bg-color);
   height: 100%;
+  padding: 1.5rem;
   h2 {
-    margin-top: 0;
+    color: var(--main-color);
   }
   .table-container {
     height: 80vh;
@@ -28,7 +40,6 @@
 
       .mat-header-cell {
         padding: 1rem;
-        background-color: red;
       }
 
       .mat-row .mat-cell {
@@ -36,7 +47,7 @@
         border-top: 1px solid transparent;
         padding: 1rem;
         white-space: nowrap;
-        color: darkblue;
+        color: var(--primary-color);
       }
 
       .mat-row:hover .mat-cell {
@@ -47,7 +58,7 @@
     .mat-column-avatar {
       &.patient-image img {
         border-radius: 50%;
-        width: 3rem;
+        max-width: 3rem;
       }
     }
 
@@ -56,6 +67,10 @@
       overflow: hidden;
       text-overflow: ellipsis;
       max-width: 8rem;
+    }
+    .mat-column-viewDetails button {
+      background-color: rgb(124, 230, 242);
+      color: blue;
     }
   }
 }

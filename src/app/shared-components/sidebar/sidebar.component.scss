@@ -3,20 +3,28 @@ nav {
   flex-direction: column;
   height: 100%;
   justify-content: space-between;
-  background-color: blue;
+  background-color: var(--primary-color);
   color: white;
   padding-left: 1rem;
   padding-right: 1rem;
   text-align: center;
+  .desktop-only {
+    display: none;
+  }
 
   .link-buttons {
     border: 0;
     width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    opacity: 0.4;
   }
 
   .pills,
   .active {
-    border: 3px solid black;
+    border: 1px solid black;
+    background-color: var(--accent-color);
+    opacity: 1;
   }
 
   .upper-bar {
@@ -34,5 +42,14 @@ nav {
 
   .lower-bar {
     margin-bottom: 1.5rem;
+  }
+  @media all and (min-width: 768px) {
+    .desktop-only {
+      display: inline-block;
+      text-align: center;
+    }
+    .link-buttons .icons {
+      margin-right: 1rem;
+    }
   }
 }

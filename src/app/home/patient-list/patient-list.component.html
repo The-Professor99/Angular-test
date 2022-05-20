@@ -1,15 +1,19 @@
 <div class="patient-list-topbar">
-  <mat-form-field appearance="outline">
-    <mat-label>Search for patient name</mat-label>
-    <input
-      matInput
-      (keyup)="applyFilter($event)"
-      placeholder="Search for patient name"
-      #input
-    />
-    <mat-icon matSuffix>search</mat-icon>
-  </mat-form-field>
-  <app-topbar></app-topbar>
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Search for patient name</mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        placeholder="Search for patient name"
+        #input
+      />
+      <div matSuffix class="icon-container">
+        <mat-icon>search</mat-icon>
+      </div>
+    </mat-form-field>
+    <app-topbar></app-topbar>
+  </div>
 </div>
 
 <div class="patient-list-container">
@@ -57,7 +61,7 @@
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let patient">
           <button mat-stroked-button (click)="viewDetails(patient.id)">
-            view Details
+            view Profile
           </button>
         </td>
       </ng-container>

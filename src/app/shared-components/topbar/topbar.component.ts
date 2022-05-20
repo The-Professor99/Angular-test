@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from '../../_service/account.service';
 
 @Component({
   selector: 'app-topbar',
@@ -6,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./topbar.component.scss'],
 })
 export class TopbarComponent implements OnInit {
-  displaySearchBar = true;
+  account = {
+    email_address: '',
+  };
 
-  constructor() {}
+  constructor(private accountService: AccountService) {
+    this.accountService.account.subscribe((x) => (this.account = x));
+  }
 
   ngOnInit(): void {}
 }

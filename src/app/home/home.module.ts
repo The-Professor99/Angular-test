@@ -16,6 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { DialogBoxComponent } from './dialog-box.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { DialogBoxComponent } from './dialog-box.component';
     MatButtonModule,
     MatIconModule,
     MatSelectModule,
+    MatDialogModule,
   ],
 })
 export class HomeModule {}

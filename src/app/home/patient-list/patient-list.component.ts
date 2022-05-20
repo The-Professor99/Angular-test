@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Patient } from '../../_models/patient';
 import { AccountService } from '../../_service/account.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-patient-list',
@@ -20,10 +21,15 @@ export class PatientListComponent implements OnInit {
     'address',
     'viewDetails',
   ];
+  title = 'Dashboard';
 
-  constructor(private accountService: AccountService) {}
+  constructor(
+    private titleService: Title,
+    private accountService: AccountService
+  ) {}
 
   ngOnInit(): void {
+    this.titleService.setTitle(this.title);
     this.getPatients();
   }
 
@@ -44,7 +50,9 @@ export class PatientListComponent implements OnInit {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
+    console.log(filterValue);
     this.dataSource = this.filterDataSource.filter((patient) => {
+      console.log(patient);
       let name = patient.name.trim().toLowerCase();
       return name.startsWith(filterValue.trim().toLowerCase());
     });

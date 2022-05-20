@@ -11,6 +11,7 @@ import { tap } from 'rxjs';
 // import { LoginComplete } from '../../store/actions/account.actions';
 // import { AppState } from '../../store/reducers';
 import { AccountService } from '../../_service/account.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit {
   title = 'Login';
 
   constructor(
+    private titleService: Title,
     private formBuilder: FormBuilder,
     private router: Router,
     private accountService: AccountService,
@@ -36,6 +38,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.titleService.setTitle(this.title);
     this.loginForm = this.formBuilder.group({
       email: [
         '',
@@ -82,15 +85,9 @@ export class LoginComponent implements OnInit {
     // login service
     this.accountService
       .login(this.email?.value, this.password?.value)
-      .pipe
-      // tap((account) => {
-      //   this.store.dispatch(new LoginComplete({ account }));
-
-      //   this.router.navigateByUrl('/');
-      // })
-      ()
+      .pipe()
       .subscribe({
-        next: (account) => {
+        next: () => {
           // get return url from query parameters or default to home page
           const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '';
           this.router.navigateByUrl(returnUrl);

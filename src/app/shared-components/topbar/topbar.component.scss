@@ -1,6 +1,20 @@
 .topbar-container {
   display: flex;
-  justify-content: space-between;
-  width: 15rem;
+  justify-content: flex-end;
   align-items: center;
+  .icon-container {
+    cursor: pointer;
+    color: var(--primary-color);
+  }
+  .image-container {
+    margin-left: 2rem;
+
+    img {
+      width: 2.5rem;
+      object-fit: cover;
+      height: 2.5rem;
+      border-radius: 30%;
+      border: 1px solid gray;
+    }
+  }
 }

@@ -8,7 +8,13 @@ import { AccountService } from '../../_service/account.service';
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements OnInit {
-  constructor(private accountService: AccountService) {}
+  account = {
+    email_address: '',
+  };
+
+  constructor(private accountService: AccountService) {
+    this.accountService.account.subscribe((x) => (this.account = x));
+  }
 
   ngOnInit(): void {}
 

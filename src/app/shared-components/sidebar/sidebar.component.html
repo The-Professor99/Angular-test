@@ -9,8 +9,8 @@
           routerLink="/dashboard"
           routerLinkActive="active"
         >
-          <!-- <img /> -->
-          <span> Patients List </span>
+          <mat-icon class="icons">people</mat-icon>
+          <span class="desktop-only"> Patients List </span>
         </a>
       </div>
       <div class="mb-2">
@@ -20,17 +20,18 @@
           routerLink="/register-patient"
           routerLinkActive="active"
         >
-          <!-- <img />  -->
-          <span> Patient's Registration </span></a
+          <mat-icon class="icons">person_add</mat-icon>
+          <span class="desktop-only"> Patient's Registration </span></a
         >
       </div>
     </div>
   </div>
   <div class="lower-bar">
-    <p>Darlene Robertson</p>
+    <p class="desktop-only">Darlene Robertson</p>
+    <!-- <p>{{ account.email_address }}</p> -->
     <a mat-stroked-button class="link-buttons pills" (click)="logout()">
-      <!-- <img />  -->
-      <span> Logout </span>
+      <mat-icon class="icons">power_settings_new</mat-icon>
+      <span class="desktop-only"> Logout </span>
     </a>
   </div>
 </nav>
