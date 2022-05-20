@@ -12,95 +12,115 @@
       #stepper
       [orientation]="verticalOrientation ? 'vertical' : 'horizontal'"
     >
-      <mat-step [stepControl]="patientDetails" [optional]="true">
+      <mat-step [stepControl]="patientDetails" [optional]="true" state="start">
         <form [formGroup]="patientDetails">
           <ng-template matStepLabel>Patient Details</ng-template>
-          <div>
-            <label> Upload Picture </label>
-            <input type="file" formControlName="image" />
+          <div class="flex">
+            <div>
+              <div>
+                <label> Upload Picture </label>
+                <input type="file" formControlName="image" />
+              </div>
+            </div>
+            <div class="flex column">
+              <div class="flex">
+                <mat-form-field appearance="outline">
+                  <mat-label>Patient Title</mat-label>
+                  <mat-select formControlName="title">
+                    <mat-option *ngFor="let title of titles" [value]="title">{{
+                      title
+                    }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>Patient Surname</mat-label>
+                  <input
+                    matInput
+                    placeholder="Surname"
+                    formControlName="surname"
+                    required
+                  />
+                </mat-form-field>
+              </div>
+              <div class="flex">
+                <mat-form-field appearance="outline">
+                  <mat-label>Patient First Name</mat-label>
+                  <input
+                    matInput
+                    placeholder="Patient First Name"
+                    formControlName="firstName"
+                    required
+                  />
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>Patient Middle Name</mat-label>
+                  <input
+                    matInput
+                    placeholder="Patient Middle Name"
+                    formControlName="middleName"
+                    required
+                  />
+                </mat-form-field>
+              </div>
+              <div class="flex">
+                <mat-form-field appearance="outline">
+                  <mat-label>Patient Phone Number</mat-label>
+                  <input
+                    matInput
+                    placeholder="Patient Phone Number"
+                    formControlName="phone"
+                    required
+                  />
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>Patient Email</mat-label>
+                  <input
+                    matInput
+                    placeholder="Patient Email"
+                    formControlName="email"
+                    required
+                  />
+                </mat-form-field>
+              </div>
+              <div class="flex">
+                <mat-form-field appearance="outline">
+                  <mat-label>Gender</mat-label>
+                  <mat-select formControlName="gender">
+                    <mat-option
+                      *ngFor="let gender of genders"
+                      [value]="gender"
+                      >{{ gender }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>Date of Birth</mat-label>
+                  <input
+                    type="date"
+                    matInput
+                    placeholder="Date of Birth (mm/dd/yy)"
+                    formControlName="dob"
+                    required
+                  />
+                </mat-form-field>
+              </div>
+              <div class="flex">
+                <mat-form-field appearance="outline">
+                  <mat-label>Address</mat-label>
+                  <textarea
+                    matInput
+                    placeholder="Address"
+                    formControlName="address"
+                    required
+                  ></textarea>
+                </mat-form-field>
+              </div>
+            </div>
           </div>
-          <mat-form-field appearance="outline">
-            <mat-label>Patient Title</mat-label>
-            <mat-select formControlName="title">
-              <mat-option *ngFor="let title of titles" [value]="title">{{
-                title
-              }}</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Patient Surname</mat-label>
-            <input
-              matInput
-              placeholder="Surname"
-              formControlName="surname"
-              required
-            />
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Patient First Name</mat-label>
-            <input
-              matInput
-              placeholder="Patient First Name"
-              formControlName="firstName"
-              required
-            />
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Patient Middle Name</mat-label>
-            <input
-              matInput
-              placeholder="Patient Middle Name"
-              formControlName="middleName"
-              required
-            />
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Patient Phone Number</mat-label>
-            <input
-              matInput
-              placeholder="Patient Phone Number"
-              formControlName="phone"
-              required
-            />
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Patient Email</mat-label>
-            <input
-              matInput
-              placeholder="Patient Email"
-              formControlName="email"
-              required
-            />
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Gender</mat-label>
-            <mat-select formControlName="gender">
-              <mat-option *ngFor="let gender of genders" [value]="gender">{{
-                gender
-              }}</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Date of Birth</mat-label>
-            <input
-              type="date"
-              matInput
-              placeholder="Date of Birth (mm/dd/yy)"
-              formControlName="dob"
-              required
-            />
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Address</mat-label>
-            <input
-              matInput
-              placeholder="Address"
-              formControlName="address"
-              required
-            />
-          </mat-form-field>
-          <div>
-            <button mat-button matStepperNext>Next</button>
+          <div class="navigators">
+            <button class="next" mat-raised-button matStepperNext>
+              Continue
+            </button>
           </div>
         </form>
       </mat-step>
@@ -109,95 +129,105 @@
       <mat-step [stepControl]="otherDetails" [optional]="true">
         <form [formGroup]="otherDetails">
           <ng-template matStepLabel>Other</ng-template>
-          <mat-form-field appearance="outline">
-            <mat-label>Ethnicity</mat-label>
-            <mat-select formControlName="ethnicity">
-              <mat-option *ngFor="let dummy of ethnicGroups" [value]="dummy">{{
-                dummy
-              }}</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Religion</mat-label>
-            <input
-              matInput
-              placeholder="Religion"
-              formControlName="religion"
-              required
-            />
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Marital Status</mat-label>
-            <mat-select formControlName="maritalStatus">
-              <mat-option
-                *ngFor="let dummy of maritalStatuses"
-                [value]="dummy"
-                >{{ dummy }}</mat-option
-              >
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Occupation</mat-label>
-            <input
-              matInput
-              placeholder="Occupation"
-              formControlName="occupation"
-              required
-            />
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Blood Group</mat-label>
-            <input
-              matInput
-              placeholder="Blood Group"
-              formControlName="bloodGroup"
-              required
-            />
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Patient Type</mat-label>
-            <input
-              matInput
-              placeholder="Patient Type"
-              formControlName="patientType"
-              required
-            />
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Nationality</mat-label>
-            <mat-select formControlName="nationality">
-              <mat-option *ngFor="let dummy of countries" [value]="dummy">{{
-                dummy
-              }}</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>State of Origin</mat-label>
-            <mat-select formControlName="state">
-              <mat-option *ngFor="let dummy of states" [value]="dummy">{{
-                dummy
-              }}</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Local Government</mat-label>
-            <mat-select formControlName="lga">
-              <mat-option *ngFor="let dummy of lgas" [value]="dummy">{{
-                dummy
-              }}</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>State of Residence</mat-label>
-            <mat-select formControlName="residence">
-              <mat-option *ngFor="let dummy of states" [value]="dummy">{{
-                dummy
-              }}</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
+          <div class="flex">
+            <mat-form-field appearance="outline">
+              <mat-label>Ethnicity</mat-label>
+              <mat-select formControlName="ethnicity">
+                <mat-option
+                  *ngFor="let dummy of ethnicGroups"
+                  [value]="dummy"
+                  >{{ dummy }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Religion</mat-label>
+              <input
+                matInput
+                placeholder="Religion"
+                formControlName="religion"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Marital Status</mat-label>
+              <mat-select formControlName="maritalStatus">
+                <mat-option
+                  *ngFor="let dummy of maritalStatuses"
+                  [value]="dummy"
+                  >{{ dummy }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Occupation</mat-label>
+              <input
+                matInput
+                placeholder="Occupation"
+                formControlName="occupation"
+                required
+              />
+            </mat-form-field>
+          </div>
+          <div class="flex">
+            <mat-form-field appearance="outline">
+              <mat-label>Blood Group</mat-label>
+              <input
+                matInput
+                placeholder="Blood Group"
+                formControlName="bloodGroup"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Patient Type</mat-label>
+              <input
+                matInput
+                placeholder="Patient Type"
+                formControlName="patientType"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Nationality</mat-label>
+              <mat-select formControlName="nationality">
+                <mat-option *ngFor="let dummy of countries" [value]="dummy">{{
+                  dummy
+                }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>State of Origin</mat-label>
+              <mat-select formControlName="state">
+                <mat-option *ngFor="let dummy of states" [value]="dummy">{{
+                  dummy
+                }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="flex">
+            <mat-form-field appearance="outline">
+              <mat-label>Local Government</mat-label>
+              <mat-select formControlName="lga">
+                <mat-option *ngFor="let dummy of lgas" [value]="dummy">{{
+                  dummy
+                }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>State of Residence</mat-label>
+              <mat-select formControlName="residence">
+                <mat-option *ngFor="let dummy of states" [value]="dummy">{{
+                  dummy
+                }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="navigators">
+            <button class="prev" mat-button matStepperPrevious>Back</button>
+            <button class="next" mat-raised-button matStepperNext>
+              Continue
+            </button>
           </div>
         </form>
       </mat-step>
@@ -206,49 +236,57 @@
       <mat-step [stepControl]="nextOfKinDetails" [optional]="true">
         <form [formGroup]="nextOfKinDetails">
           <ng-template matStepLabel>Next of Kin</ng-template>
-          <mat-form-field appearance="outline">
-            <mat-label>Full Name</mat-label>
-            <input
-              matInput
-              placeholder="Full Name"
-              formControlName="name"
-              required
-            />
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Relationship</mat-label>
-            <mat-select formControlName="relationship">
-              <mat-option *ngFor="let dummy of relationships" [value]="dummy">{{
-                dummy
-              }}</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Patient Phone Number</mat-label>
-            <input
-              matInput
-              placeholder="Patient Phone Number"
-              formControlName="patientPhoneNumber"
-              required
-            />
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Patient Address</mat-label>
-            <textarea
-              matInput
-              placeholder="Patient Address"
-              formControlName="patientAddress"
-            ></textarea>
-          </mat-form-field>
+          <div class="flex">
+            <mat-form-field appearance="outline">
+              <mat-label>Full Name</mat-label>
+              <input
+                matInput
+                placeholder="Full Name"
+                formControlName="name"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Relationship</mat-label>
+              <mat-select formControlName="relationship">
+                <mat-option
+                  *ngFor="let dummy of relationships"
+                  [value]="dummy"
+                  >{{ dummy }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Patient Phone Number</mat-label>
+              <input
+                matInput
+                placeholder="Patient Phone Number"
+                formControlName="patientPhoneNumber"
+                required
+              />
+            </mat-form-field>
+          </div>
           <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
+            <mat-form-field appearance="outline">
+              <mat-label>Patient Address</mat-label>
+              <textarea
+                matInput
+                placeholder="Patient Address"
+                formControlName="patientAddress"
+              ></textarea>
+            </mat-form-field>
+          </div>
+          <div class="navigators">
+            <button class="prev" mat-button matStepperPrevious>Back</button>
+            <button class="next" mat-raised-button matStepperNext>
+              Continue
+            </button>
           </div>
         </form>
       </mat-step>
 
       <!-- HMO -->
-      <mat-step [stepControl]="hmoDetails">
+      <mat-step [stepControl]="hmoDetails" state="stop">
         <form [formGroup]="hmoDetails">
           <ng-template matStepLabel>HMO</ng-template>
 
@@ -260,14 +298,21 @@
               }}</mat-option>
             </mat-select>
           </mat-form-field>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="registerPatient()">
+          <div class="navigators">
+            <button class="prev" mat-button matStepperPrevious>Back</button>
+            <button class="next" mat-raised-button (click)="registerPatient()">
               Register Patient
             </button>
           </div>
         </form>
       </mat-step>
+
+      <ng-template matStepperIcon="start">
+        <mat-icon>arrow_right_alt</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="stop">
+        <mat-icon>stop_circle</mat-icon>
+      </ng-template>
     </mat-stepper>
   </div>
 </div>

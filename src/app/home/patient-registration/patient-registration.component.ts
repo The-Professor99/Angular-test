@@ -9,11 +9,18 @@ import { DialogBoxComponent } from '../dialog-box.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AccountService } from '../../_service/account.service';
 import { Title } from '@angular/platform-browser';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 @Component({
   selector: 'app-patient-registration',
   templateUrl: './patient-registration.component.html',
   styleUrls: ['./patient-registration.component.scss'],
+  providers: [
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: { displayDefaultIndicatorType: false },
+    },
+  ],
 })
 export class PatientRegistrationComponent implements OnInit {
   titles: string[] = ['Mr.', 'Mrs.', 'Miss'];
