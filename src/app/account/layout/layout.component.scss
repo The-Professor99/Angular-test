@@ -33,55 +33,33 @@
       border: 1.5rem solid;
       border-color: white;
       border-radius: 50%;
-      width: 15rem;
-      height: 15rem;
+      width: 13rem;
+      height: 13rem;
       margin: auto;
-      box-shadow: 0 0 0 20px #222;
-
-      -webkit-animation-name: change-border-color; /* Safari 4.0 - 8.0 */
-      -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
-      -webkit-animation-iteration-count: infinite;
-      animation-name: change-border-color;
-      animation-duration: 4s;
-      animation-iteration-count: infinite;
+      margin-top: 2rem;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
-
-    /* Safari 4.0 - 8.0 */
-    @-webkit-keyframes change-border-color {
-      0% {
-        border-color: red;
-      }
-      25% {
-        border-color: yellow;
-      }
-      50% {
-        border-color: blue;
-      }
-      100% {
-        border-color: green;
-      }
-    }
-
-    /* Standard syntax */
-    @keyframes change-border-color {
-      0% {
-        border-color: red;
-      }
-      25% {
-        border-color: yellow;
-      }
-      50% {
-        border-color: blue;
-      }
-      100% {
-        border-color: green;
-      }
+    .image-container-sub {
+      box-shadow: 0 4px 16px 3px rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+      height: 100%;
+      border-radius: 50%;
     }
     .image-container img {
-      height: 12rem;
-      width: 12rem;
-      object-fit: cover;
+      // height: 12rem;
+      // width: 12rem;
+      // object-fit: cover;
+      // border-radius: 50%;
+
+      height: 16rem;
       border-radius: 50%;
+      bottom: 6.2rem;
+      height: 16rem;
+      object-fit: cover;
+      max-width: 200%;
+      width: 145%;
+      position: relative;
+      right: 2.5rem;
     }
     .text-container {
       text-align: center;
