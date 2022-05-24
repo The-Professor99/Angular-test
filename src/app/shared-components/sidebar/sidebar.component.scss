@@ -32,7 +32,18 @@ nav {
     align-items: center;
 
     .image-container {
+      // background: linear-gradient(
+      //   158.97deg,
+      //   rgba(236, 234, 234, 0.4) 0.95%,
+      //   rgba(255, 255, 255, 0) 99.15%
+      // );
+      width: 2rem;
+      height: 2.5rem;
+      margin: auto;
+      background: white;
       margin-bottom: 2rem;
+      filter: blur(8px);
+      -webkit-filter: blur(8px);
     }
 
     .mb-2 {

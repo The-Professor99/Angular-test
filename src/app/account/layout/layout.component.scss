@@ -5,7 +5,6 @@
   height: 100%;
   .left-container {
     // background-color: red;
-    background-image: url("/assets/img/serious-asian-young-female-doctor-using-tablet-computer_1.jpg");
 
     background-size: cover;
     .left-container-sub {
@@ -14,21 +13,19 @@
       margin-top: 3rem;
       background-color: rgba(255, 255, 255, 0.95);
 
-      @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
-        .left-container-sub {
-          -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(20px);
-          // background-color: rgba(255, 255, 255, 0.5);
-        }
-        .warning {
-          display: none;
-        }
-      }
+      // @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+      //   .left-container-sub {
+      //     -webkit-backdrop-filter: blur(10px);
+      //     backdrop-filter: blur(20px);
+      //   }
+      // }
     }
     .left-container-sub-sub {
       width: 80%;
       margin: auto;
+      position: relative;
     }
+
     .image-container {
       border: 1.5rem solid;
       border-color: white;
@@ -80,6 +77,38 @@
       width: 45%;
       .left-container-sub {
         margin-top: 0;
+      }
+      .blur-filter {
+        width: 3rem;
+        height: 3rem;
+        background: gray;
+        position: absolute;
+        right: 5rem;
+        filter: blur(20px);
+        -webkit-filter: blur(20px);
+        &.blur1 {
+          top: 1rem;
+        }
+        &.blur2 {
+          width: 4rem;
+          right: 2rem;
+          bottom: 3rem;
+        }
+        &.blur3 {
+          width: 4rem;
+          height: 4rem;
+          bottom: 0;
+          left: 0;
+        }
+        &.blur4 {
+          width: 2rem;
+          height: 2rem;
+          background: var(--primary-color);
+          filter: blur(10px);
+          -webkit-filter: blur(10px);
+          top: 0;
+          left: 0;
+        }
       }
     }
     .right-container {
