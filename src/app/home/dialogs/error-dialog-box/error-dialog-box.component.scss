@@ -1,0 +1,16 @@
+.error-dialog-box-container {
+  padding: 2rem;
+  animation: shake 0.5s;
+  animation-iteration-count: 2;
+  .dialog-content {
+    color: var(--main-color);
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+  button {
+    background-color: red;
+    color: white;
+    margin: auto;
+    width: 9rem;
+  }
+}

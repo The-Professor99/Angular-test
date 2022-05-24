@@ -58,7 +58,9 @@
     .mat-column-avatar {
       &.patient-image img {
         border-radius: 50%;
-        max-width: 3rem;
+        // max-width: 3rem;
+        width: 3rem;
+        height: 3rem;
       }
     }
 

@@ -32,7 +32,12 @@
       <ng-container matColumnDef="avatar">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let patient" class="patient-image">
-          <img src="{{ patient.image }}" />
+          <img
+            src="{{ patient.image }}"
+            width="48px"
+            height="48px"
+            alt="patient avatar"
+          />
         </td>
       </ng-container>
       <ng-container matColumnDef="name">

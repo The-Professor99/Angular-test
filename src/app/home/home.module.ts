@@ -17,6 +17,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { DialogBoxComponent } from './dialog-box.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { DndDirective } from './dnd.directive';
+import { ErrorDialogBoxComponent } from './dialogs/error-dialog-box/error-dialog-box.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     PatientListComponent,
     PatientRegistrationComponent,
     DialogBoxComponent,
+    DndDirective,
+    ErrorDialogBoxComponent,
   ],
   imports: [
     CommonModule,

@@ -3,7 +3,7 @@
   flex-direction: column;
   height: 100%;
   .patient-registration-topbar {
-    height: 20%;
+    // height: 20%;
     display: flex;
     justify-content: space-between;
     padding: 1rem 2rem 0.5rem 2rem;
@@ -19,44 +19,175 @@
 
   .patient-registration-container {
     background-color: var(--bg-color);
-    padding: 1.5rem;
-    height: 85%;
+    // height: 85%;
     overflow: auto;
-    :first-child {
+
+    .mat-form-field-appearance-outline .mat-form-field-outline {
+      background-color: white;
+    }
+    .mat-stepper:first-child {
       height: 100%;
       background-color: inherit;
     }
+    .dropzone {
+      // border: 2px solid red;
+      padding: 2rem 1rem;
+      border-radius: 1rem;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 2px 2px 2px transparent;
+      // padding: 1.5rem;
+      background: linear-gradient(to bottom right, #ffffff 30%, #ccffff 100%);
+      .file-preview img {
+        height: auto;
+        max-height: 6rem;
+      }
+      .file-preview p {
+        word-break: break-all;
+      }
+      .file-preview p.error-tag {
+        word-break: break-word;
+      }
+      .file-preview p span.red {
+        color: red;
+      }
+      .image-icon {
+        color: var(--primary-color);
+        font-size: 5rem;
+        display: inline;
+      }
+      p {
+        color: var(--faint-color);
+        font-weight: 600;
+      }
+      label {
+        cursor: pointer;
+        display: inline-block;
+        width: 100%;
+        padding: 0.5rem 1rem;
+        border-radius: 0.4rem;
+        // background: initial;
+      }
+      button {
+        color: white;
+        background-color: var(--primary-color);
+        min-width: 1rem;
+        white-space: initial;
+        line-height: initial;
+        padding: 0;
+        // border-radius: 0.4rem;
+      }
+    }
 
-    // .navigators {
-    //   button {
-    //     background-color: red;
-    //   }
-    //   button.next {
-    //     background-color: var(--primary--color);
-    //     width: 9rem;
-    //   }
-    //   button.prev {
-    //     background-color: var(--accent--color);
-    //   }
-    // }
+    .fileover {
+      animation: shake 1s;
+      animation-iteration-count: infinite;
+    }
+
+    .visually-hidden {
+      position: absolute !important;
+      height: 1px;
+      width: 1px;
+      overflow: hidden;
+      clip: rect(1px, 1px, 1px, 1px);
+    }
+    input.visually-hidden:focus + label {
+      outline: thin dotted;
+    }
+    input.visually-hidden:focus-within + label {
+      outline: thin dotted;
+    }
+
+    .navigators {
+      .my-spinner {
+        display: inline-block;
+        margin-right: 1rem;
+      }
+      button {
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+      }
+      button.next {
+        background-color: var(--primary-color);
+        color: white;
+        width: 11rem;
+      }
+      button.prev {
+        width: 8rem;
+        margin-bottom: 1rem;
+        background-color: var(--accent-color);
+        color: var(--primary-color);
+        border: 1px solid var(--primary-color);
+        margin-right: 3rem;
+      }
+    }
   }
 
   @media all and (min-width: 768px) {
     .patient-registration-topbar {
       flex-direction: row;
+      height: 14vh;
     }
 
     .patient-registration-container {
-      background-color: var(--bg-color);
+      // background-color: var(--bg-color);
       padding: 1.5rem;
+      min-height: 86vh;
 
-      // .flex {
-      //   display: flex;
-      //   justify-content: space-around;
-      // }
-      // .column {
-      //   flex-direction: column;
-      // }
+      .flex {
+        display: flex;
+        justify-content: space-between;
+
+        .w-20 {
+          width: 20%;
+        }
+        .w-22 {
+          width: 22%;
+        }
+        .w-27 {
+          width: 27%;
+        }
+        .w-35 {
+          width: 35%;
+        }
+        .w-45 {
+          width: 45%;
+        }
+        .w-50 {
+          width: 50%;
+        }
+        .w-75 {
+          width: 75%;
+        }
+        .w-70 {
+          width: 70%;
+        }
+      }
+      .column {
+        flex-direction: column;
+      }
+      .flex.flex-start {
+        justify-content: flex-start;
+      }
+      .lga {
+        // change better name for this lga selector
+        margin-right: 3rem;
+        width: 28%;
+      }
+      .navigators {
+        display: flex;
+        justify-content: flex-end;
+
+        // position: absolute;
+        // bottom: 0;
+        // margin-bottom: 2rem;
+        // right: 0;
+        // margin-right: 2rem;
+        button.prev {
+          margin-bottom: initial;
+        }
+      }
     }
   }
 }

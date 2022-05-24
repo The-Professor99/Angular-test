@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -10,6 +10,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { AccountService } from '../../_service/account.service';
 import { Title } from '@angular/platform-browser';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { ErrorDialogBoxComponent } from '../dialogs/error-dialog-box/error-dialog-box.component';
 
 @Component({
   selector: 'app-patient-registration',
@@ -21,8 +23,18 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
       useValue: { displayDefaultIndicatorType: false },
     },
   ],
+  // to restore default step states, remove the providers directive.
+  encapsulation: ViewEncapsulation.None,
 })
 export class PatientRegistrationComponent implements OnInit {
+  // file: any[] = [];
+  loading = false;
+  imgSrc: any = '';
+  size: string = '';
+  filename: string = '';
+  isOptional = false;
+  verticalOrientation = true;
+  imageError: boolean = false;
   titles: string[] = ['Mr.', 'Mrs.', 'Miss'];
   ethnicGroups: string[] = ['Yoruba', 'Igbo', 'Hausa'];
   maritalStatuses: string[] = ['Married', 'Widowed'];
@@ -35,7 +47,7 @@ export class PatientRegistrationComponent implements OnInit {
   title = 'Patient Registration';
 
   patientDetails = new FormGroup({
-    image: new FormControl(''),
+    imagePlaceholder: new FormControl(''),
     title: new FormControl(''),
     surname: new FormControl(''),
     firstName: new FormControl(''),
@@ -67,20 +79,19 @@ export class PatientRegistrationComponent implements OnInit {
   hmoDetails = new FormGroup({
     spanar: new FormControl(''),
   });
-  isOptional = false;
-  verticalOrientation = true;
 
   constructor(
     private titleService: Title,
     private accountService: AccountService,
     private formBuilder: FormBuilder,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit() {
     this.titleService.setTitle(this.title);
     this.patientDetails = this.formBuilder.group({
-      image: [''],
+      imagePlaceholder: [''],
       title: ['', Validators.required],
       surname: ['', Validators.required],
       firstName: ['', Validators.required],
@@ -133,6 +144,57 @@ export class PatientRegistrationComponent implements OnInit {
     return this.hmoDetails;
   }
 
+  sanitizeImageUrl(imageUrl: string): SafeUrl {
+    return this.sanitizer.bypassSecurityTrustUrl(imageUrl);
+  }
+
+  formatBytes(bytes: number, decimals = 2) {
+    if (bytes === 0) {
+      return '0 Bytes';
+    }
+    const k = 1024;
+    const dm = decimals <= 0 ? 0 : decimals;
+    const sizes = ['Bytes', 'KB', 'MB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+  }
+
+  handleFile(file: any) {
+    if (!file.type.startsWith('image') || file.size > 5000000) {
+      this.imageError = true;
+      return;
+    }
+
+    this.imageError = false;
+    this.size = this.formatBytes(file.size);
+    this.filename = file.name;
+    console.log(this.size);
+    // this.imgSrc = this.sanitizeImageUrl(URL.createObjectURL(file))
+    // https://stackoverflow.com/questions/57743966/getting-unsafe-url-error-while-displaying-image
+
+    const reader = new FileReader();
+    reader.addEventListener('load', (event: any) => {
+      let srcData = event.target.result;
+      this.imgSrc = srcData;
+    });
+    reader.readAsDataURL(file);
+  }
+
+  onFileDropped(files: Array<File>) {
+    this.handleFile(files[0]);
+  }
+
+  onChange = (event: Event) => {
+    const my_files = [];
+    const target = event.target as HTMLInputElement;
+    const files = target.files || [];
+    for (let i = 0; i < files.length; i++) {
+      my_files.push(files[i]);
+    }
+
+    this.handleFile(my_files[0]);
+  };
+
   registerPatient() {
     if (
       this.getDetails.invalid ||
@@ -140,10 +202,14 @@ export class PatientRegistrationComponent implements OnInit {
       this.getNextofKinDetails.invalid ||
       this.getHMODetails.invalid
     ) {
+      this.dialog.open(ErrorDialogBoxComponent);
       return;
     }
+
+    this.getDetails.removeControl('imagePlaceholder');
     let all_data = Object.assign(
       {},
+      { image: this.imgSrc }, // to serve until i find a better way to upload image value without errors
       this.getDetails.value,
       this.getotherDetails.value,
       this.getNextofKinDetails.value,
@@ -151,7 +217,7 @@ export class PatientRegistrationComponent implements OnInit {
     );
 
     // Send Post Request
-    this.dialog.open(DialogBoxComponent);
+    this.loading = true;
     this.accountService
       .registerPatientDetails(all_data)
       .pipe()
@@ -164,5 +230,10 @@ export class PatientRegistrationComponent implements OnInit {
           // this.loading = false;
         },
       });
+    this.loading = false;
+    this.getDetails.addControl(
+      'imagePlaceholder',
+      this.formBuilder.control('')
+    );
   }
 }
