@@ -3,7 +3,6 @@
   flex-direction: column;
   height: 100%;
   .patient-registration-topbar {
-    // height: 20%;
     display: flex;
     justify-content: space-between;
     padding: 1rem 2rem 0.5rem 2rem;
@@ -19,7 +18,6 @@
 
   .patient-registration-container {
     background-color: var(--bg-color);
-    // height: 85%;
     overflow: auto;
 
     .mat-form-field-appearance-outline .mat-form-field-outline {
@@ -30,14 +28,12 @@
       background-color: inherit;
     }
     .dropzone {
-      // border: 2px solid red;
       padding: 2rem 1rem;
       border-radius: 1rem;
       display: flex;
       justify-content: center;
       text-align: center;
       box-shadow: 2px 2px 2px transparent;
-      // padding: 1.5rem;
       background: linear-gradient(to bottom right, #ffffff 30%, #ccffff 100%);
       .file-preview img {
         height: auto;
@@ -67,7 +63,6 @@
         width: 100%;
         padding: 0.5rem 1rem;
         border-radius: 0.4rem;
-        // background: initial;
       }
       button {
         color: white;
@@ -76,7 +71,6 @@
         white-space: initial;
         line-height: initial;
         padding: 0;
-        // border-radius: 0.4rem;
       }
     }
 
@@ -131,7 +125,6 @@
     }
 
     .patient-registration-container {
-      // background-color: var(--bg-color);
       padding: 1.5rem;
       min-height: 86vh;
 
@@ -178,12 +171,6 @@
       .navigators {
         display: flex;
         justify-content: flex-end;
-
-        // position: absolute;
-        // bottom: 0;
-        // margin-bottom: 2rem;
-        // right: 0;
-        // margin-right: 2rem;
         button.prev {
           margin-bottom: initial;
         }
